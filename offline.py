@@ -63,7 +63,7 @@ def args_register():
     # other arguments
     parser.add_argument('--use_cuda', dest='use_cuda', default=True, 
                         action='store_true', help="Use cuda")
-    parser.add_argument('--data_path', default='./incremental_0502/', type=str,
+    parser.add_argument('--data_path', default='./FinEvent_dataset/offline', type=str,
                         help="Path of features, labels and edges")
     # format: './incremental_0808/incremental_graphs_0808/embeddings_XXXX'
     parser.add_argument('--mask_path', default=None, type=str,
@@ -360,6 +360,9 @@ def offline_stage(train_i, i,
                         save_path=save_path_i, 
                         is_validation=True, 
                         cluster_type=args.cluster_type)
+
+    torch.save(model, args.data_path + '/model2')
+    torch.save(RL_thresholds, args.data_path + '/RL_thresholds2.pt')
                     
 
 if __name__ == '__main__':
@@ -409,4 +412,6 @@ if __name__ == '__main__':
                                          embedding_save_path=embedding_save_path,
                                          loss_fn=loss_fn,
                                          model=None)
+    torch.save(model, args.data_path + '/model1')
+    torch.save(RL_thresholds, args.data_path + '/RL_thresholds1.pt')
 

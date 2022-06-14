@@ -79,7 +79,7 @@ def RL_neighbor_filter(multi_r_data, RL_thresholds, load_path):
 
         remain_node_index = remain_node_index.type('torch.LongTensor')
         # print(remain_node_index)
-        edge_index = edge_index[:, remain_node_index]
+        edge_index = edge_index[:, remain_node_index-1]
         multi_remain_data.append(edge_index)
     
     return multi_remain_data
